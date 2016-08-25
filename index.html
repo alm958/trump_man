@@ -9,12 +9,128 @@
         <script>
         $(document).ready(function(){
 
+            var world = [
+                [9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9],<!--row01-->
+                [9,0,0,0,6,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,7,0,0,0,0,9],<!--row02-->
+                [9,0,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,0,9],<!--row03-->
+                [9,0,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,0,9],<!--row04-->
+                [9,0,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,0,9],<!--row05-->
+                [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9],<!--row06-->
+                [9,0,9,9,9,9,0,9,0,9,9,9,9,9,9,9,9,9,0,9,0,9,9,9,9,0,9],<!--row07-->
+                [9,0,0,8,0,0,0,9,0,0,0,0,0,9,0,0,0,0,0,9,0,0,0,0,0,0,9],<!--row08-->
+                [9,9,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,9,9],<!--row09-->
+                [9,9,9,9,9,9,0,9,0,0,0,0,0,2,0,8,0,0,0,9,0,9,9,9,9,9,9],<!--row10-->
+                [9,9,9,9,9,9,0,9,0,9,9,9,9,9,9,9,9,9,0,9,0,9,9,9,9,9,9],<!--row11-->
+                [9,9,9,9,9,9,0,0,0,9,9,9,9,9,9,9,9,9,6,0,0,9,9,9,9,9,9],<!--center row12-->
+                [9,9,9,9,9,9,0,9,0,9,9,9,9,9,9,9,9,9,0,9,0,9,9,9,9,9,9],<!--row13-->
+                [9,9,9,9,9,9,0,9,0,0,0,0,0,0,0,0,0,0,0,9,0,9,9,9,9,9,9],<!--row14-->
+                [9,9,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,9,9],<!--row15-->
+                [9,0,0,0,0,0,0,9,0,0,0,0,0,9,0,0,0,0,0,9,0,0,0,0,0,0,9],<!--row16-->
+                [9,0,9,9,9,9,0,9,0,9,9,9,9,9,9,9,9,9,0,9,0,9,9,9,9,0,9],<!--row17-->
+                [9,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9],<!--row18-->
+                [9,0,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,0,9],<!--row19-->
+                [9,0,9,9,9,9,6,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,0,9],<!--row20-->
+                [9,0,0,0,0,0,0,0,0,0,0,0,0,9,0,0,6,0,0,0,0,0,0,8,0,0,9],<!--row21-->
+                [9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9],<!--row22-->
+            ];
+
+            function drawmap(){
+                $('#map').html("");
+                for (var row = 0; row < world.length; row++) {
+                    for (var col = 0; col < world[row].length; col++) {
+                        var world_str = '';
+                        if (world[row][col] === 9){
+                            world_str = "<div class='wall mpel'></div>";
+                        }
+                        else if (world[row][col] === 0) {
+                            world_str = "<div class='bills mpel'></div>";
+                        }
+                        else if (world[row][col] === 1) {
+                            world_str = "<div class='empty mpel'></div>";
+                        }
+                        else if (world[row][col] === 2) {
+                            world_str = "<div class='trumprt mpel'></div>";
+                        }
+                        else if (world[row][col] === 3) {
+                            world_str = "<div class='trumplft mpel'></div>";
+                        }
+                        else if (world[row][col] === 4) {
+                            world_str = "<div class='trumpup mpel'></div>";
+                        }
+                        else if (world[row][col] === 5) {
+                            world_str = "<div class='trumpdn mpel'></div>";
+                        }
+                        else if (world[row][col] === 6) {
+                            world_str = "<div class='ch11 mpel'></div>";
+                        }
+                        else if (world[row][col] === 7) {
+                            world_str = "<div class='potus mpel'></div>";
+                        }
+                        else if (world[row][col] === 8) {
+                            world_str = "<div class='casino mpel'></div>";
+                        }
+                        else if (world[row][col] === 10) {
+                            world_str = "<div class='trmpaghast mpel'></div>";
+                        }
+                        $('#map').append(world_str);
+                    }
+                }
+            }
+
+            drawmap();
+
+            var trumpman = {row:10, col:14};
+            var trump_score = 0;
+            var investor_score = 0;
+
+            $('body').keydown(function(event){
+                if (event.keycode === 38){
+                    if (world[trumpman.row - 1][trumpman.col] === 0){
+                        world[trumpman.row][trumpman.col] = 1;
+                        world[trumpman.row - 1][trumpman.col] = 4;
+                        trumpman.row--;
+                        trump_score += 20;
+                        investor_score += 10;
+                     }
+                     else if (world[trumpman.row - 1][trumpman.col] === 6){
+                        world[trumpman.row][trumpman.col] = 1;
+                        world[trumpman.row - 1][trumpman.col] = 4;
+                        trumpman.row--;
+                        trump_score += 200;
+                        investor_score = 0;
+                     }
+                     else if (world[trumpman.row - 1][trumpman.col] === 8){
+                        world[trumpman.row][trumpman.col] = 1;
+                        world[trumpman.row - 1][trumpman.col] = 4;
+                        trumpman.row--;
+                        trump_score += 20;
+                        investor_score -= 20;
+                     }
+                     else if (world[trumpman.row - 1][trumpman.col] === 7){
+                        world[trumpman.row][trumpman.col] = 10;
+                     }
+                    drawmap();
+                 }
+                 else if (event.keycode === 40){
+
+                 }
+                 else if (event.keycode === 40){
+
+                 }
+                 else if (event.keycode === 40){
+
+                 }
+             })
 
 
         });
         </script>
     </head>
     <body>
+        <div id="wrap">
+            <div id="map">
 
+            </div>
+        </div>
     </body>
 </html>

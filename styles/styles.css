@@ -1,0 +1,62 @@
+*{margin:0;padding:0;}
+body{background-color: black;}
+.wall{background-color: blue;}
+/*#wrap{}*/
+#map{
+    height: 660px;
+    width: 810px;
+}
+.mpel{
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+}
+/*.empty{}*/
+.bills{
+    background-image:url("../images/money.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.trumprt{
+    background-image: url('../images/trump_ani_rt.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.trumplft{
+    background-image: url('../images/trump_ani_lft.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.trumpup{
+    background-image: url('../images/trump_ani_up.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.trumpdn{
+    background-image: url('../images/trump_ani_dn.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.ch11{
+    background-image: url('../images/ch11.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.potus{
+    background-image: url('../images/POTUS.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.casino{
+    background-image: url('../images/taj_ani.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
