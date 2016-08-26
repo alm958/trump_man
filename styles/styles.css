@@ -1,9 +1,15 @@
 *{margin:0;padding:0;}
-body{background-color: black;}
+body{
+    background-color: black;
+    color:white;
+}
+p{display: inline;}
 .wall{background-color: blue;}
-/*#wrap{}*/
+#wrap{
+    font-size: 0;
+}
 #map{
-    height: 660px;
+    height: 630px;
     width: 810px;
 }
 .mpel{
@@ -67,8 +73,4 @@ body{background-color: black;}
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-}
-.r02{
-    position: relative;
-    top: -10px
 }
