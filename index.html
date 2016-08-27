@@ -154,7 +154,7 @@
             var audio7 = new Audio('rich.mp3');
 
             //the following arrays characterize surroundings at specific grid sites
-            //these include corners and intersections
+            //these include corners and intersections [up,dn,lft,rt]
             var cul = [1,0,1,0];
             var cll = [0,1,1,0];
             var cur = [1,0,0,1];
@@ -164,7 +164,7 @@
             var ttb = [1,0,0,0];
             var tbt = [0,1,0,0];
             var xsc = [0,0,0,0];
-            //the 4 movement vecors
+            //the 4 movement vecors (prior-to-current position vector)
             var vdn = [1,0];
             var vup = [-1,0];
             var vlf = [0,-1];
@@ -181,11 +181,11 @@
             var pprior = {row:1, col:2};
             var dprior = {row:10, col:12};
             var vprior = {row:10, col:14};
-            //ghost vector gives direction of travel from last step to current
+            //ghost vector gives direction of travel vector from last step to current position
             var pvector = [(putin.row - pprior.row),(putin.col - pprior.col)];
             var dvector = [(dduke.row - dprior.row),(dduke.col - dprior.col)];
             var vvector = [(vfox.row - vprior.row),(vfox.col - vprior.col)];
-            //distance vectors to trumpman
+            //distance vectors to trumpman from the surrounding positions of the ghosts
             var pup_trump = ((((putin.row - 1)-(trumpman.row))**2) + (((putin.col)-(trumpman.col))**2))**(1/2);
             var pdn_trump = ((((putin.row + 1)-(trumpman.row))**2) + (((putin.col)-(trumpman.col))**2))**(1/2);
             var plt_trump = ((((putin.row)-(trumpman.row))**2) + (((putin.col - 1)-(trumpman.col))**2))**(1/2);
