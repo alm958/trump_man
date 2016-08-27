@@ -145,6 +145,12 @@
             }
 
             drawmap();
+
+            var trumpman = {row:8, col:13};
+            var trump_score = 0;
+            var investor_score = 0;
+            var eatcount = 0;
+
             var audio4 = new Audio('D_O_C.mp3');
             var audio1 = new Audio('TrumpQuotesWTH.mp3');
             var audio2 = new Audio('TrumpQuotesChina.mp3');
@@ -198,11 +204,6 @@
             var vdn_trump = ((((vfox.row + 1)-(trumpman.row))**2) + (((vfox.col)-(trumpman.col))**2))**(1/2);
             var vlt_trump = ((((vfox.row)-(trumpman.row))**2) + (((vfox.col - 1)-(trumpman.col))**2))**(1/2);
             var vrt_trump = ((((vfox.row)-(trumpman.row))**2) + (((vfox.col + 1)-(trumpman.col))**2))**(1/2);
-            //
-            var trumpman = {row:8, col:13};
-            var trump_score = 0;
-            var investor_score = 0;
-            var eatcount = 0;
 
             audio4.play();
 
