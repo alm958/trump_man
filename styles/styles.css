@@ -5,6 +5,10 @@ body{
 }
 p{display: inline;}
 .wall{background-color: blue;}
+.gstwall{
+    background-color: blue;
+    opacity: 0.4;
+}
 #wrap{
     font-size: 0;
 }
@@ -70,6 +74,24 @@ p{display: inline;}
 }
 .casino{
     background-image: url('../images/taj_ani.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.putin{
+    background-image: url('../images/putin.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.davidduke{
+    background-image: url('../images/davidD.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.vfox{
+    background-image: url('../images/vicente_fox.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

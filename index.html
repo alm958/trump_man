@@ -10,27 +10,27 @@
         $(document).ready(function(){
 
             var world = [
-                [9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9],
-                [9,0,0,0,6,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,7,0,0,0,0,9],
-                [9,0,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,0,9],
-                [9,0,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,0,9],
-                [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9],
-                [9,0,9,9,9,9,0,9,0,9,9,9,9,9,9,9,9,9,0,9,0,9,9,9,9,0,9],
-                [9,0,0,8,0,0,0,9,0,0,0,0,0,9,0,0,0,0,0,9,0,0,0,0,0,0,9],
-                [9,9,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,9,9],
-                [9,9,9,9,9,9,0,9,0,0,0,0,0,2,0,8,0,0,0,9,0,9,9,9,9,9,9],
-                [9,9,9,9,9,9,0,9,0,9,9,9,9,9,9,9,9,9,0,9,0,9,9,9,9,9,9],
-                [0,0,0,0,0,0,0,0,0,9,1,1,1,1,1,1,1,9,6,0,0,0,0,0,0,0,0],
-                [9,9,9,9,9,9,0,9,0,9,9,9,9,9,9,9,9,9,0,9,0,9,9,9,9,9,9],
-                [9,9,9,9,9,9,0,9,0,0,0,0,0,0,0,0,0,0,0,9,0,9,9,9,9,9,9],
-                [9,9,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,9,9],
-                [9,0,0,0,0,0,0,9,0,0,0,0,0,9,0,0,0,0,0,9,0,0,0,0,0,0,9],
-                [9,0,9,9,9,9,0,9,0,9,9,9,9,9,9,9,9,9,0,9,0,9,9,9,9,0,9],
-                [9,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9],
-                [9,0,9,9,9,9,0,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,0,9],
-                [9,0,9,9,9,9,6,9,9,9,9,9,0,9,0,9,9,9,9,9,0,9,9,9,9,0,9],
-                [9,0,0,0,0,0,0,0,0,0,0,0,0,9,0,0,6,0,0,0,0,0,0,8,0,0,9],
-                [9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9],
+                [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
+                [9,11, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 9],
+                [9, 0, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 0, 9],
+                [9, 0, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 0, 9],
+                [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
+                [9, 0, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 0, 9],
+                [9, 0, 0, 8, 0, 0, 0, 9, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 9],
+                [9, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 9],
+                [9, 9, 9, 9, 9, 9, 0, 9, 0, 0, 0, 0, 0, 2, 0, 8, 0, 0, 0, 9, 0, 9, 9, 9, 9, 9, 9],
+                [9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9,14, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 1, 1,12, 1,13, 1, 1, 9, 0, 6, 0, 0, 0, 0, 0, 0, 0],
+                [9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9],
+                [9, 9, 9, 9, 9, 9, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 9, 9, 9, 9, 9, 9],
+                [9, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 9],
+                [9, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 9],
+                [9, 0, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 0, 9],
+                [9, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9],
+                [9, 0, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 0, 9],
+                [9, 0, 9, 9, 9, 9, 6, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 0, 9],
+                [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 6, 0, 0, 0, 0, 0, 0, 8, 0, 0, 9],
+                [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
             ];
 
             function billupdate(){
@@ -66,8 +66,6 @@
                 audio1.play();
             }
             function winningcheck(){
-                console.log(eatcount);
-                console.log(eatcount%50);
                 if (eatcount % 50 === 0){
                    audio3.play();
                 }
@@ -99,6 +97,9 @@
                         if (world[row][col] === 9){
                             world_str = "<div class='wall mpel'></div>";
                         }
+                        else if (world[row][col] === 14) {
+                            world_str = "<div class='gstwall mpel'></div>";
+                        }
                         else if (world[row][col] === 0) {
                             world_str = "<div class='bills mpel'></div>";
                         }
@@ -129,6 +130,15 @@
                         else if (world[row][col] === 10) {
                             world_str = "<div class='trmpaghast mpel'></div>";
                         }
+                        else if (world[row][col] === 11) {
+                            world_str = "<div class='putin mpel'></div>";
+                        }
+                        else if (world[row][col] === 12) {
+                            world_str = "<div class='davidduke mpel'></div>";
+                        }
+                        else if (world[row][col] === 13) {
+                            world_str = "<div class='vfox mpel'></div>";
+                        }
                         $('#map').append(world_str);
                     }
                 }
@@ -143,10 +153,56 @@
             var audio6 = new Audio('KingOdebt.mp3');
             var audio7 = new Audio('rich.mp3');
 
-            var eatcount = 0;
+            //the following arrays characterize surroundings at specific grid sites
+            //these include corners and intersections
+            var cul = [1,0,1,0];
+            var cll = [0,1,1,0];
+            var cur = [1,0,0,1];
+            var clr = [0,1,0,1];
+            var tlr = [0,0,1,0];
+            var trl = [0,0,0,1];
+            var ttb = [1,0,0,0];
+            var tbt = [0,1,0,0];
+            var xsc = [0,0,0,0];
+            //the 4 movement vecors
+            var vdn = [1,0];
+            var vup = [-1,0];
+            var vlf = [0,-1];
+            var vrt = [0,1];
+            //vicinity array hold state surrounding ghosts a[0]:up, a[1]:dwn, a[2]:lft, a[3]:rht
+            var pvicinity = [];
+            var dvicinity = [];
+            var vvicinity = [];
+            //current world coordinate of ghosts
+            var putin = {row:1, col:1};
+            var dduke = {row:10, col:12};
+            var vfox = {row:10, col:14};
+            //prior step world coordinates of ghosts
+            var pprior = {row:1, col:2};
+            var dprior = {row:10, col:12};
+            var vprior = {row:10, col:14};
+            //ghost vector gives direction of travel from last step to current
+            var pvector = [(putin.row - pprior.row),(putin.col - pprior.col)];
+            var dvector = [(dduke.row - dprior.row),(dduke.col - dprior.col)];
+            var vvector = [(vfox.row - vprior.row),(vfox.col - vprior.col)];
+            //distance vectors to trumpman
+            var pup_trump = ((((putin.row - 1)-(trumpman.row))**2) + (((putin.col)-(trumpman.col))**2))**(1/2);
+            var pdn_trump = ((((putin.row + 1)-(trumpman.row))**2) + (((putin.col)-(trumpman.col))**2))**(1/2);
+            var plt_trump = ((((putin.row)-(trumpman.row))**2) + (((putin.col - 1)-(trumpman.col))**2))**(1/2);
+            var prt_trump = ((((putin.row)-(trumpman.row))**2) + (((putin.col + 1)-(trumpman.col))**2))**(1/2);
+            var dup_trump = ((((dduke.row - 1)-(trumpman.row))**2) + (((dduke.col)-(trumpman.col))**2))**(1/2);
+            var ddn_trump = ((((dduke.row + 1)-(trumpman.row))**2) + (((dduke.col)-(trumpman.col))**2))**(1/2);
+            var dlt_trump = ((((dduke.row)-(trumpman.row))**2) + (((dduke.col - 1)-(trumpman.col))**2))**(1/2);
+            var drt_trump = ((((dduke.row)-(trumpman.row))**2) + (((dduke.col + 1)-(trumpman.col))**2))**(1/2);
+            var vup_trump = ((((vfox.row - 1)-(trumpman.row))**2) + (((vfox.col)-(trumpman.col))**2))**(1/2);
+            var vdn_trump = ((((vfox.row + 1)-(trumpman.row))**2) + (((vfox.col)-(trumpman.col))**2))**(1/2);
+            var vlt_trump = ((((vfox.row)-(trumpman.row))**2) + (((vfox.col - 1)-(trumpman.col))**2))**(1/2);
+            var vrt_trump = ((((vfox.row)-(trumpman.row))**2) + (((vfox.col + 1)-(trumpman.col))**2))**(1/2);
+            //
             var trumpman = {row:8, col:13};
             var trump_score = 0;
             var investor_score = 0;
+            var eatcount = 0;
 
             audio4.play();
 
@@ -266,7 +322,118 @@
                 drawmap();
                 winningcheck();
             })
-
+            function putinsurroundings(){
+                pvicinity = [];
+                if (world[putin.row - 1][putin.col] === 9){ pvicinity[0] = 1;}
+                else                                      { pvicinity[0] = 0;}
+                if (world[putin.row + 1][putin.col] === 9){ pvicinity[1] = 1;}
+                else                                      { pvicinity[1] = 0;}
+                if (world[putin.row][putin.col - 1] === 9){ pvicinity[2] = 1;}
+                else                                      { pvicinity[2] = 0;}
+                if (world[putin.row][putin.col + 1] === 9){ pvicinity[3] = 1;}
+                else                                      { pvicinity[3] = 0;}
+            }
+            function putinmove(){
+                putinsurroundings();
+                if (pvicinity === cul){
+                    if (pvector === vup){putin.col++;}
+                    else                   {putin.row++;}
+                }
+                else if (pvicinity === cll) {
+                    if (pvector === vdn){putin.col++;}
+                    else                   {putin.row--;}
+                }
+                else if (pvicinity === cur) {
+                    if (pvector === vrt){putin.row++;}
+                    else                   {putin.col--;}
+                }
+                else if (pvicinity === clr) {
+                    if (pvector === vdn){putin.col--;}
+                    else                   {putin.row--;}
+                }
+                else if (pvicinity === tlr) {
+                    if (pvector === vdn){
+                        if (prt_trump >= pdn_trump){putin.row++;}
+                        else                       {putin.col++;}
+                    }
+                    else if (pvector === vup) {
+                        if (prt_trump >= pup_trump){putin.row--;}
+                        else                       {putin.col++;}
+                    }
+                    else if (pvector === vlf) {
+                        if (pdn_trump >= pup_trump){putin.row--;}
+                        else                       {putin.row++;}
+                    }
+                }
+                else if (pvicinity === trl) {
+                    if (pvector === vdn){
+                        if (plt_trump >= pdn_trump){putin.row++;}
+                        else                       {putin.col--;}
+                    }
+                    else if (pvector === vup) {
+                        if (plt_trump >= pup_trump){putin.row--;}
+                        else                       {putin.col--;}
+                    }
+                    else if (pvector === vrt) {
+                        if (pdn_trump >= pup_trump){putin.row--;}
+                        else                       {putin.row++;}
+                    }
+                }
+                else if (pvicinity === ttb) {
+                    if (pvector === vrt){
+                        if (prt_trump >= pdn_trump){putin.row++;}
+                        else                       {putin.col++;}
+                    }
+                    else if (pvector === vup) {
+                        if (plt_trump >= prt_trump){putin.col++;}
+                        else                       {putin.col--;}
+                    }
+                    else if (pvector === vlf) {
+                        if (pdn_trump >= plt_trump){putin.col--;}
+                        else                       {putin.row++;}
+                    }
+                }
+                else if (pvicinity === tbt) {
+                    if (pvector === vrt){
+                        if (prt_trump >= pup_trump){putin.row--;}
+                        else                       {putin.col++;}
+                    }
+                    else if (pvector === vdn) {
+                        if (plt_trump >= prt_trump){putin.col++;}
+                        else                       {putin.col--;}
+                    }
+                    else if (pvector === vlf) {
+                        if (pup_trump >= plt_trump){putin.col--;}
+                        else                       {putin.row--;}
+                    }
+                }
+                else if (pvicinity === xsc) {
+                    if (pvector === vrt){
+                        if (prt_trump <= pup_trump && prt_trump <= pdn_trump){putin.col++;}
+                        else if ( pup_trump <= pdn_trump)                    {putin.row--;}
+                        else                                                 {putin.row++;}
+                    }
+                    if (pvector === vlf){
+                        if (plt_trump <= pup_trump && prt_trump <= pdn_trump){putin.col--;}
+                        else if ( pup_trump <= pdn_trump)                    {putin.row--;}
+                        else                                                 {putin.row++;}
+                    }
+                    if (pvector === vdn){
+                        if (pdn_trump <= plt_trump && pdn_trump <= prt_trump){putin.row++;}
+                        else if ( plt_trump <= prt_trump)                    {putin.col--;}
+                        else                                                 {putin.col++;}
+                    }
+                    if (pvector === vup){
+                        if (pup_trump <= plt_trump && pup_trump <= prt_trump){putin.row--;}
+                        else if ( plt_trump <= prt_trump)                    {putin.col--;}
+                        else                                                 {putin.col++;}
+                    }
+                }
+                else if (pvector === vrt){putin.col++;}
+                else if (pvector === vlf){putin.col--;}
+                else if (pvector === vdn){putin.row++;}
+                else if (pvector === vup){putin.row--;}
+            }
 
         });
         </script>
