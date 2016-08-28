@@ -263,6 +263,7 @@
                 }
                 else if (eatcount === 235){
                     youwon = true;
+                    window.clearInterval(interval);
                     pauseSong();
                     pause_audio1();
                     pause_audio2();
@@ -456,7 +457,7 @@
                         audio5.play();
                     }
                 }
-                
+
                 drawmap();
                 winningcheck();
                 console.log('pdn_trump:'+pdn_trump);
@@ -675,7 +676,7 @@
                 drawmap();
             }
 
-            var interval = setInterval(putinmove, 350);
+            var interval = setInterval(putinmove, 500);
 
         });
         </script>
