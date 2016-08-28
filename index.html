@@ -162,7 +162,8 @@
             var audio5 = new Audio('wall.mp3');
             var audio6 = new Audio('KingOdebt.mp3');
             var audio7 = new Audio('rich.mp3');
-            var audio8 = new Audio('lost_game.mp3')
+            var audio8 = new Audio('lost_game.mp3');
+            var audio9 = new Audio('tremendous_win.mp3');
             function pause_audio1(){
                 audio1.pause();
             }
@@ -245,6 +246,8 @@
             function drawmap(){
                 if (putin.row === trumpman.row && putin.col === trumpman.col){
                     console.log('putin at trump');
+                    window.clearInterval(interval);
+                    youlost = true;
                     pauseSong();
                     pause_audio1();
                     pause_audio2();
@@ -256,6 +259,22 @@
                     $('#investorscore').html(investor_score);
                     $('#map').html("<img src='images/yourfired.jpg' alt='you are fired'>");
                     audio8.play();
+                    return;
+                }
+                else if (eatcount === 235){
+                    youwon = true;
+                    pauseSong();
+                    pause_audio1();
+                    pause_audio2();
+                    pause_audio3();
+                    pause_audio5();
+                    pause_audio6();
+                    pause_audio7();
+                    $('#trumpscore').html(trump_score);
+                    $('#investorscore').html(investor_score);
+                    $('#map').html("<img src='images/winner.jpg' alt='you won'>");
+                    audio9.play();
+                    return;
                 }
                 else {
                 $('#trumpscore').html(trump_score);
@@ -316,9 +335,16 @@
             }
 
             drawmap();
+            var youlost = false;
+            var youwon = false;
+
 
             $('body').keydown(function(event){
-                if (event.keyCode === 38){
+                console.log('eatcount '+eatcount);
+                if (youlost || youwon){
+                    return;
+                }
+                else if (event.keyCode === 38){
                     if (world[trumpman.row - 1][trumpman.col] === 0){
                         billupdate();
                         uptrump();
@@ -649,7 +675,10 @@
                 else if (array_equivalent(pvector,vdn) ){putindn();}
                 else if (array_equivalent(pvector,vup) ){putinup();}
                 console.log('endof putinmove pvector : '+pvector);
+                drawmap();
             }
+
+            var interval = setInterval(putinmove, 250);
 
         });
         </script>
