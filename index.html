@@ -456,10 +456,7 @@
                         audio5.play();
                     }
                 }
-                else if (event.keyCode === 90){
-                    putinmove();
-                    drawmap();
-                }
+                
                 drawmap();
                 winningcheck();
                 console.log('pdn_trump:'+pdn_trump);
@@ -678,7 +675,7 @@
                 drawmap();
             }
 
-            var interval = setInterval(putinmove, 250);
+            var interval = setInterval(putinmove, 350);
 
         });
         </script>
