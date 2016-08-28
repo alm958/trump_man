@@ -259,7 +259,7 @@
                     $('#investorscore').html(investor_score);
                     $('#map').html("<img src='images/yourfired.jpg' alt='you are fired'>");
                     audio8.play();
-                    return;
+                    // return;
                 }
                 else if (eatcount === 235){
                     youwon = true;
@@ -275,7 +275,7 @@
                     $('#investorscore').html(investor_score);
                     $('#map').html("<img src='images/winner.jpg' alt='you won'>");
                     audio9.play();
-                    return;
+                    // return;
                 }
                 else {
                 $('#trumpscore').html(trump_score);
@@ -339,9 +339,7 @@
             var youlost = false;
             var youwon = false;
 
-
             $('body').keydown(function(event){
-                console.log('eatcount '+eatcount);
                 if (youlost || youwon){
                     return;
                 }
@@ -460,12 +458,10 @@
 
                 drawmap();
                 winningcheck();
-                console.log('pdn_trump:'+pdn_trump);
             })
 
             function putinsurroundings(){
                 pvicinity = [];
-                console.log('start of surroundings pvicinity :'+pvicinity)
                 if (world[putin.row - 1][putin.col] === 9){ pvicinity[0] = 1;}
                 else                                      { pvicinity[0] = 0;}
                 if (world[putin.row + 1][putin.col] === 9){ pvicinity[1] = 1;}
@@ -474,14 +470,11 @@
                 else                                      { pvicinity[2] = 0;}
                 if (world[putin.row][putin.col + 1] === 9){ pvicinity[3] = 1;}
                 else                                      { pvicinity[3] = 0;}
-                console.log('end of surroundings pvicinity :'+pvicinity)
             }
 
             function putinmove(){
-                console.log('beginof putinmove pvector : '+pvector);
                 putinsurroundings();
                 if ( array_equivalent(pvicinity,cul) ){
-                    console.log('cul');
                     if ( array_equivalent(pvector,vup) ){
                         putinrt();
                     }
@@ -490,7 +483,6 @@
                     }
                 }
                 else if ( array_equivalent(pvicinity,cll) ) {
-                    console.log('cll');
                     if ( array_equivalent(pvector,vdn) ) {
                         putinrt();
                     }
@@ -499,7 +491,6 @@
                     }
                 }
                 else if ( array_equivalent(pvicinity,cur) ) {
-                    console.log('cur');
                     if ( array_equivalent(pvector,vrt) ) {
                         putindn();
                     }
@@ -508,7 +499,6 @@
                     }
                 }
                 else if (array_equivalent(pvicinity,clr) ) {
-                    console.log('clr');
                     if ( array_equivalent(pvector,vdn) ) {
                         putinlt();
                     }
@@ -517,7 +507,6 @@
                     }
                 }
                 else if ( array_equivalent(pvicinity,tlr) ) {
-                    console.log('tlr');
                     if ( array_equivalent(pvector,vdn) ) {
                         if (prt_trump >= pdn_trump){
                             putindn();
@@ -544,7 +533,6 @@
                     }
                 }
                 else if ( array_equivalent(pvicinity,trl) ) {
-                    console.log('trl');
                     if ( array_equivalent(pvector,vdn) ){
                         if (plt_trump >= pdn_trump){
                             putindn();
@@ -571,7 +559,6 @@
                     }
                 }
                 else if ( array_equivalent(pvicinity,ttb) ) {
-                    console.log('ttb');
                     if ( array_equivalent(pvector,vrt) ){
                         if (prt_trump >= pdn_trump){
                             putindn();
@@ -598,7 +585,6 @@
                     }
                 }
                 else if ( array_equivalent(pvicinity,tbt) ) {
-                    console.log('tbt');
                     if ( array_equivalent(pvector,vrt) ){
                         if (prt_trump >= pup_trump){
                             putinup();
@@ -617,28 +603,22 @@
                     }
                 }
                 else if ( array_equivalent(pvicinity,xsc) ) {
-                    console.log('xsc');
-                    console.log('pvector:'+pvector)
                     if ( array_equivalent(pvector,vrt) ){
-                        console.log('vrt');
                         if (prt_trump <= pup_trump && prt_trump <= pdn_trump){putinrt();}
                         else if ( pup_trump <= pdn_trump)                    {putinup();}
                         else                                                 {putindn();}
                     }
                     else if ( array_equivalent(pvector,vlf) ){
-                        console.log('vlf');
                         if (plt_trump <= pup_trump && prt_trump <= pdn_trump){putinlt();}
                         else if ( pup_trump <= pdn_trump)                    {putinup();}
                         else                                                 {putindn();}
                     }
                     else if ( array_equivalent(pvector,vdn) ){
-                        console.log('vdn_trump');
                         if (pdn_trump <= plt_trump && pdn_trump <= prt_trump){putindn();}
                         else if ( plt_trump <= prt_trump)                    {putinlt();}
                         else                                                 {putinrt();}
                     }
                     else if ( array_equivalent(pvector,vup) ){
-                        console.log('vup');
                         if (pup_trump <= plt_trump && pup_trump <= prt_trump){putinup();}
                         else if ( plt_trump <= prt_trump)                    {putinlt();}
                         else                                                 {putinrt();}
@@ -672,11 +652,10 @@
                 }
                 else if (array_equivalent(pvector,vdn) ){putindn();}
                 else if (array_equivalent(pvector,vup) ){putinup();}
-                console.log('endof putinmove pvector : '+pvector);
                 drawmap();
             }
 
-            var interval = setInterval(putinmove, 250);
+            var interval = setInterval(putinmove, 200);
 
         });
         </script>
