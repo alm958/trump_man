@@ -245,7 +245,7 @@
 
             function drawmap(){
                 if (putin.row === trumpman.row && putin.col === trumpman.col){
-                    console.log('putin at trump');
+                    console.log('putin at trump. you lost');
                     window.clearInterval(interval);
                     youlost = true;
                     pauseSong();
@@ -259,9 +259,10 @@
                     $('#investorscore').html(investor_score);
                     $('#map').html("<img src='images/yourfired.jpg' alt='you are fired'>");
                     audio8.play();
-                    // return;
+                    break;
                 }
                 else if (eatcount === 235){
+                    console.log('you won')
                     youwon = true;
                     window.clearInterval(interval);
                     pauseSong();
@@ -271,11 +272,12 @@
                     pause_audio5();
                     pause_audio6();
                     pause_audio7();
+                    pause_audio8();
                     $('#trumpscore').html(trump_score);
                     $('#investorscore').html(investor_score);
                     $('#map').html("<img src='images/winner.jpg' alt='you won'>");
                     audio9.play();
-                    // return;
+                    break;
                 }
                 else {
                 $('#trumpscore').html(trump_score);
