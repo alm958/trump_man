@@ -19,7 +19,7 @@
                 [9, 0, 0, 8, 0, 0, 0, 9, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 9],
                 [9, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 0, 9, 9, 9, 9, 9, 9],
                 [9, 9, 9, 9, 9, 9, 0, 9, 0, 0, 0, 0, 0, 2, 0, 8, 0, 0, 0, 9, 0, 9, 9, 9, 9, 9, 9],
-                [9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9,14, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9],
+                [9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9],
                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 1, 1,12, 1,13, 1, 1, 9, 0, 6, 0, 0, 0, 0, 0, 0, 0],
                 [9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 9, 0, 9, 9, 9, 9, 9, 9],
                 [9, 9, 9, 9, 9, 9, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 9, 9, 9, 9, 9, 9],
@@ -32,6 +32,14 @@
                 [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 6, 0, 0, 0, 0, 0, 0, 8, 0, 0, 9],
                 [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
             ];
+
+            function array_equivalent(arr1,arr2){
+                if (arr1.length != arr2.length){return false;}
+                for (var i = 0; i < arr1.length; i++){
+                    if (arr1[i] != arr2[i]){return false;}
+                }
+                return true;
+            }
 
             function billupdate(){
                 world[trumpman.row][trumpman.col] = 1;
@@ -85,6 +93,52 @@
             function rttrump(){
                 world[trumpman.row][trumpman.col + 1] = 2;
                 trumpman.col++;
+            }
+            function putinup(){
+                console.log('putinup() called.')
+                pprior.row = putin.row;
+                pprior.col = putin.col;
+                world[putin.row][putin.col] = ptemp;
+                ptemp = world[putin.row - 1][putin.col];
+                world[putin.row - 1][putin.col] = 11;
+                putin.row--;
+
+                pparam_update();
+            }
+            function putindn(){
+                console.log('strt putindn. putin: '+putin.row+','+putin.col);
+                console.log('pprior :'+pprior.row+','+pprior.col);
+                pprior.row = putin.row;
+                pprior.col = putin.col;
+                world[putin.row][putin.col] = ptemp;
+                ptemp = world[putin.row + 1][putin.col];
+                world[putin.row + 1][putin.col] = 11;
+                putin.row++;
+                // pvector = [(putin.row - pprior.row),(putin.col - pprior.col)];
+                pparam_update();
+                console.log('end of putindn. putin: '+ putin.row+','+ putin.col);
+                console.log('pprior :'+ pprior.row + ','+pprior.col);
+            }
+            function putinlt(){
+                console.log('putinlt() called.')
+                pprior.row = putin.row;
+                pprior.col = putin.col;
+                world[putin.row][putin.col] = ptemp;
+                ptemp = world[putin.row][putin.col - 1];
+                world[putin.row][putin.col - 1] = 11;
+                putin.col--;
+                // pvector = [(putin.row - pprior.row),(putin.col - pprior.col)];
+                pparam_update();
+            }
+            function putinrt(){
+                console.log('putinrt() called.')
+                pprior.row = putin.row;
+                pprior.col = putin.col;
+                world[putin.row][putin.col] = ptemp;
+                ptemp = world[putin.row][putin.col + 1];
+                world[putin.row][putin.col + 1] = 11;
+                putin.col++;
+                pparam_update();
             }
 
             function drawmap(){
@@ -170,6 +224,7 @@
             var ttb = [1,0,0,0];
             var tbt = [0,1,0,0];
             var xsc = [0,0,0,0];
+            var cul2 = [1,0,1,0];
             //the 4 movement vecors (prior-to-current position vector)
             var vdn = [1,0];
             var vup = [-1,0];
@@ -204,6 +259,17 @@
             var vdn_trump = ((((vfox.row + 1)-(trumpman.row))**2) + (((vfox.col)-(trumpman.col))**2))**(1/2);
             var vlt_trump = ((((vfox.row)-(trumpman.row))**2) + (((vfox.col - 1)-(trumpman.col))**2))**(1/2);
             var vrt_trump = ((((vfox.row)-(trumpman.row))**2) + (((vfox.col + 1)-(trumpman.col))**2))**(1/2);
+            //variables to hold the value of the square while a ghost passes
+            function pparam_update(){
+                pvector = [(putin.row - pprior.row),(putin.col - pprior.col)];
+                pup_trump = ((((putin.row - 1)-(trumpman.row))**2) + (((putin.col)-(trumpman.col))**2))**(1/2);
+                pdn_trump = ((((putin.row + 1)-(trumpman.row))**2) + (((putin.col)-(trumpman.col))**2))**(1/2);
+                plt_trump = ((((putin.row)-(trumpman.row))**2) + (((putin.col - 1)-(trumpman.col))**2))**(1/2);
+                prt_trump = ((((putin.row)-(trumpman.row))**2) + (((putin.col + 1)-(trumpman.col))**2))**(1/2);
+            }
+            var ptemp = 0;
+            var dtemp = 0;
+            var vtemp = 0;
 
             audio4.play();
 
@@ -320,11 +386,18 @@
                         audio5.play();
                     }
                 }
+                else if (event.keyCode === 90){
+                    putinmove();
+                    drawmap();
+                }
                 drawmap();
                 winningcheck();
+                console.log('pdn_trump:'+pdn_trump);
             })
+
             function putinsurroundings(){
                 pvicinity = [];
+                console.log('start of surroundings pvicinity :'+pvicinity)
                 if (world[putin.row - 1][putin.col] === 9){ pvicinity[0] = 1;}
                 else                                      { pvicinity[0] = 0;}
                 if (world[putin.row + 1][putin.col] === 9){ pvicinity[1] = 1;}
@@ -333,107 +406,205 @@
                 else                                      { pvicinity[2] = 0;}
                 if (world[putin.row][putin.col + 1] === 9){ pvicinity[3] = 1;}
                 else                                      { pvicinity[3] = 0;}
+                console.log('end of surroundings pvicinity :'+pvicinity)
             }
+
             function putinmove(){
+                console.log('beginof putinmove pvector : '+pvector);
                 putinsurroundings();
-                if (pvicinity === cul){
-                    if (pvector === vup){putin.col++;}
-                    else                   {putin.row++;}
-                }
-                else if (pvicinity === cll) {
-                    if (pvector === vdn){putin.col++;}
-                    else                   {putin.row--;}
-                }
-                else if (pvicinity === cur) {
-                    if (pvector === vrt){putin.row++;}
-                    else                   {putin.col--;}
-                }
-                else if (pvicinity === clr) {
-                    if (pvector === vdn){putin.col--;}
-                    else                   {putin.row--;}
-                }
-                else if (pvicinity === tlr) {
-                    if (pvector === vdn){
-                        if (prt_trump >= pdn_trump){putin.row++;}
-                        else                       {putin.col++;}
+                if ( array_equivalent(pvicinity,cul) ){
+                    console.log('cul');
+                    if ( array_equivalent(pvector,vup) ){
+                        putinrt();
                     }
-                    else if (pvector === vup) {
-                        if (prt_trump >= pup_trump){putin.row--;}
-                        else                       {putin.col++;}
-                    }
-                    else if (pvector === vlf) {
-                        if (pdn_trump >= pup_trump){putin.row--;}
-                        else                       {putin.row++;}
+                    else{
+                        putindn();
                     }
                 }
-                else if (pvicinity === trl) {
-                    if (pvector === vdn){
-                        if (plt_trump >= pdn_trump){putin.row++;}
-                        else                       {putin.col--;}
+                else if ( array_equivalent(pvicinity,cll) ) {
+                    console.log('cll');
+                    if ( array_equivalent(pvector,vdn) ) {
+                        putinrt();
                     }
-                    else if (pvector === vup) {
-                        if (plt_trump >= pup_trump){putin.row--;}
-                        else                       {putin.col--;}
-                    }
-                    else if (pvector === vrt) {
-                        if (pdn_trump >= pup_trump){putin.row--;}
-                        else                       {putin.row++;}
+                    else{
+                        putinup();
                     }
                 }
-                else if (pvicinity === ttb) {
-                    if (pvector === vrt){
-                        if (prt_trump >= pdn_trump){putin.row++;}
-                        else                       {putin.col++;}
+                else if ( array_equivalent(pvicinity,cur) ) {
+                    console.log('cur');
+                    if ( array_equivalent(pvector,vrt) ) {
+                        putindn();
                     }
-                    else if (pvector === vup) {
-                        if (plt_trump >= prt_trump){putin.col++;}
-                        else                       {putin.col--;}
-                    }
-                    else if (pvector === vlf) {
-                        if (pdn_trump >= plt_trump){putin.col--;}
-                        else                       {putin.row++;}
+                    else {
+                        putinlt();
                     }
                 }
-                else if (pvicinity === tbt) {
-                    if (pvector === vrt){
-                        if (prt_trump >= pup_trump){putin.row--;}
-                        else                       {putin.col++;}
+                else if (array_equivalent(pvicinity,clr) ) {
+                    console.log('clr');
+                    if ( array_equivalent(pvector,vdn) ) {
+                        putinlt();
                     }
-                    else if (pvector === vdn) {
-                        if (plt_trump >= prt_trump){putin.col++;}
-                        else                       {putin.col--;}
-                    }
-                    else if (pvector === vlf) {
-                        if (pup_trump >= plt_trump){putin.col--;}
-                        else                       {putin.row--;}
+                    else {
+                        putinup();
                     }
                 }
-                else if (pvicinity === xsc) {
-                    if (pvector === vrt){
-                        if (prt_trump <= pup_trump && prt_trump <= pdn_trump){putin.col++;}
-                        else if ( pup_trump <= pdn_trump)                    {putin.row--;}
-                        else                                                 {putin.row++;}
+                else if ( array_equivalent(pvicinity,tlr) ) {
+                    console.log('tlr');
+                    if ( array_equivalent(pvector,vdn) ) {
+                        if (prt_trump >= pdn_trump){
+                            putindn();
+                        }
+                        else {
+                            putinrt();
+                        }
                     }
-                    if (pvector === vlf){
-                        if (plt_trump <= pup_trump && prt_trump <= pdn_trump){putin.col--;}
-                        else if ( pup_trump <= pdn_trump)                    {putin.row--;}
-                        else                                                 {putin.row++;}
+                    else if ( array_equivalent(pvector,vup) ) {
+                        if (prt_trump >= pup_trump){
+                            putinup();
+                        }
+                        else {
+                            putinrt();
+                        }
                     }
-                    if (pvector === vdn){
-                        if (pdn_trump <= plt_trump && pdn_trump <= prt_trump){putin.row++;}
-                        else if ( plt_trump <= prt_trump)                    {putin.col--;}
-                        else                                                 {putin.col++;}
-                    }
-                    if (pvector === vup){
-                        if (pup_trump <= plt_trump && pup_trump <= prt_trump){putin.row--;}
-                        else if ( plt_trump <= prt_trump)                    {putin.col--;}
-                        else                                                 {putin.col++;}
+                    else if ( array_equivalent(pvector,vlf) ) {
+                        if (pdn_trump >= pup_trump){
+                            putinup();
+                        }
+                        else {
+                            putindn();
+                        }
                     }
                 }
-                else if (pvector === vrt){putin.col++;}
-                else if (pvector === vlf){putin.col--;}
-                else if (pvector === vdn){putin.row++;}
-                else if (pvector === vup){putin.row--;}
+                else if ( array_equivalent(pvicinity,trl) ) {
+                    console.log('trl');
+                    if ( array_equivalent(pvector,vdn) ){
+                        if (plt_trump >= pdn_trump){
+                            putindn();
+                        }
+                        else {
+                            putinlt();
+                        }
+                    }
+                    else if ( array_equivalent(pvector,vup) ) {
+                        if (plt_trump >= pup_trump){
+                            putinup();
+                        }
+                        else {
+                            putinlt();
+                        }
+                    }
+                    else if ( array_equivalent(pvector,vrt) ) {
+                        if (pdn_trump >= pup_trump){
+                            putinup();
+                        }
+                        else {
+                            putindn();
+                        }
+                    }
+                }
+                else if ( array_equivalent(pvicinity,ttb) ) {
+                    console.log('ttb');
+                    if ( array_equivalent(pvector,vrt) ){
+                        if (prt_trump >= pdn_trump){
+                            putindn();
+                        }
+                        else {
+                            putinrt();
+                        }
+                    }
+                    else if ( array_equivalent(pvector,vup) ) {
+                        if (plt_trump >= prt_trump){
+                            putinrt();
+                        }
+                        else {
+                            putinlt();
+                        }
+                    }
+                    else if ( array_equivalent(pvector,vlf) ) {
+                        if (pdn_trump >= plt_trump){
+                            putinlt();
+                        }
+                        else {
+                            putindn();
+                        }
+                    }
+                }
+                else if ( array_equivalent(pvicinity,tbt) ) {
+                    console.log('tbt');
+                    if ( array_equivalent(pvector,vrt) ){
+                        if (prt_trump >= pup_trump){
+                            putinup();
+                        }
+                        else {
+                            putinrt();
+                        }
+                    }
+                    else if ( array_equivalent(pvector,vdn) ) {
+                        if (plt_trump >= prt_trump){putinrt();}
+                        else                       {putinlt();}
+                    }
+                    else if ( array_equivalent(pvector,vlf) ) {
+                        if (pup_trump >= plt_trump){putinlt();}
+                        else                       {putinup();}
+                    }
+                }
+                else if ( array_equivalent(pvicinity,xsc) ) {
+                    console.log('xsc');
+                    console.log('pvector:'+pvector)
+                    if ( array_equivalent(pvector,vrt) ){
+                        console.log('vrt');
+                        if (prt_trump <= pup_trump && prt_trump <= pdn_trump){putinrt();}
+                        else if ( pup_trump <= pdn_trump)                    {putinup();}
+                        else                                                 {putindn();}
+                    }
+                    else if ( array_equivalent(pvector,vlf) ){
+                        console.log('vlf');
+                        if (plt_trump <= pup_trump && prt_trump <= pdn_trump){putinlt();}
+                        else if ( pup_trump <= pdn_trump)                    {putinup();}
+                        else                                                 {putindn();}
+                    }
+                    else if ( array_equivalent(pvector,vdn) ){
+                        console.log('vdn_trump');
+                        if (pdn_trump <= plt_trump && pdn_trump <= prt_trump){putindn();}
+                        else if ( plt_trump <= prt_trump)                    {putinlt();}
+                        else                                                 {putinrt();}
+                    }
+                    else if ( array_equivalent(pvector,vup) ){
+                        console.log('vup');
+                        if (pup_trump <= plt_trump && pup_trump <= prt_trump){putinup();}
+                        else if ( plt_trump <= prt_trump)                    {putinlt();}
+                        else                                                 {putinrt();}
+                    }
+                }
+                else if (array_equivalent(pvector,vrt) ){
+                    if (putin.row === 10 && putin.col === 26){
+                        pprior.row = putin.row;
+                        pprior.col = putin.col;
+                        world[10][26] = ptemp;
+                        ptemp = world[10][0];
+                        world[10][0] = 11;
+                        putin.col = 0;
+                        pparam_update();
+                        pvector = [0,1];
+                    }
+                    else {putinrt();}
+                }
+                else if (array_equivalent(pvector,vlf) ){
+                    if (putin.row === 10 && putin.col === 0){
+                        pprior.row = putin.row;
+                        pprior.col = putin.col;
+                        world[10][0] = ptemp;
+                        ptemp = world[10][26];
+                        world[10][26] = 11;
+                        putin.col = 26;
+                        pparam_update();
+                        pvector = [0,-1];
+                    }
+                    else {putinlt();}
+                }
+                else if (array_equivalent(pvector,vdn) ){putindn();}
+                else if (array_equivalent(pvector,vup) ){putinup();}
+                console.log('endof putinmove pvector : '+pvector);
             }
 
         });
