@@ -33,6 +33,11 @@
                 [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
             ];
 
+            var trumpman = {row:8, col:13};
+
+
+
+
             function array_equivalent(arr1,arr2){
                 if (arr1.length != arr2.length){return false;}
                 for (var i = 0; i < arr1.length; i++){
@@ -141,77 +146,41 @@
                 pparam_update();
             }
 
-            function drawmap(){
-                $('#trumpscore').html(trump_score);
-                $('#investorscore').html(investor_score);
-                $('#map').html("");
-                for (var row = 0; row < world.length; row++) {
-                    for (var col = 0; col < world[row].length; col++) {
-                        var world_str = '';
-                        if (world[row][col] === 9){
-                            world_str = "<div class='wall mpel'></div>";
-                        }
-                        else if (world[row][col] === 14) {
-                            world_str = "<div class='gstwall mpel'></div>";
-                        }
-                        else if (world[row][col] === 0) {
-                            world_str = "<div class='bills mpel'></div>";
-                        }
-                        else if (world[row][col] === 1) {
-                            world_str = "<div class='empty mpel'></div>";
-                        }
-                        else if (world[row][col] === 2) {
-                            world_str = "<div class='trumprt mpel'></div>";
-                        }
-                        else if (world[row][col] === 3) {
-                            world_str = "<div class='trumplft mpel'></div>";
-                        }
-                        else if (world[row][col] === 4) {
-                            world_str = "<div class='trumpup mpel'></div>";
-                        }
-                        else if (world[row][col] === 5) {
-                            world_str = "<div class='trumpdn mpel'></div>";
-                        }
-                        else if (world[row][col] === 6) {
-                            world_str = "<div class='ch11 mpel'></div>";
-                        }
-                        else if (world[row][col] === 7) {
-                            world_str = "<div class='potus mpel'></div>";
-                        }
-                        else if (world[row][col] === 8) {
-                            world_str = "<div class='casino mpel'></div>";
-                        }
-                        else if (world[row][col] === 10) {
-                            world_str = "<div class='trmpaghast mpel'></div>";
-                        }
-                        else if (world[row][col] === 11) {
-                            world_str = "<div class='putin mpel'></div>";
-                        }
-                        else if (world[row][col] === 12) {
-                            world_str = "<div class='davidduke mpel'></div>";
-                        }
-                        else if (world[row][col] === 13) {
-                            world_str = "<div class='vfox mpel'></div>";
-                        }
-                        $('#map').append(world_str);
-                    }
-                }
-            }
-
-            drawmap();
-
             var trumpman = {row:8, col:13};
             var trump_score = 0;
             var investor_score = 0;
             var eatcount = 0;
 
             var audio4 = new Audio('D_O_C.mp3');
+            audio4.loop = true;
+            function pauseSong() {
+                audio4.pause();
+            }
             var audio1 = new Audio('TrumpQuotesWTH.mp3');
             var audio2 = new Audio('TrumpQuotesChina.mp3');
             var audio3 = new Audio('TrumpQuotesTMW.mp3');
             var audio5 = new Audio('wall.mp3');
             var audio6 = new Audio('KingOdebt.mp3');
             var audio7 = new Audio('rich.mp3');
+            var audio8 = new Audio('lost_game.mp3')
+            function pause_audio1(){
+                audio1.pause();
+            }
+            function pause_audio2(){
+                audio2.pause();
+            }
+            function pause_audio3(){
+                audio3.pause();
+            }
+            function pause_audio5(){
+                audio5.pause();
+            }
+            function pause_audio6(){
+                audio6.pause();
+            }
+            function pause_audio7(){
+                audio7.pause();
+            }
 
             //the following arrays characterize surroundings at specific grid sites
             //these include corners and intersections [up,dn,lft,rt]
@@ -272,6 +241,81 @@
             var vtemp = 0;
 
             audio4.play();
+
+            function drawmap(){
+                if (putin.row === trumpman.row && putin.col === trumpman.col){
+                    console.log('putin at trump');
+                    pauseSong();
+                    pause_audio1();
+                    pause_audio2();
+                    pause_audio3();
+                    pause_audio5();
+                    pause_audio6();
+                    pause_audio7();
+                    $('#trumpscore').html(trump_score);
+                    $('#investorscore').html(investor_score);
+                    $('#map').html("<img src='images/yourfired.jpg' alt='you are fired'>");
+                    audio8.play();
+                }
+                else {
+                $('#trumpscore').html(trump_score);
+                $('#investorscore').html(investor_score);
+                $('#map').html("");
+                for (var row = 0; row < world.length; row++) {
+                    for (var col = 0; col < world[row].length; col++) {
+                        var world_str = '';
+                        if (world[row][col] === 9){
+                            world_str = "<div class='wall mpel'></div>";
+                        }
+                        else if (world[row][col] === 14) {
+                            world_str = "<div class='gstwall mpel'></div>";
+                        }
+                        else if (world[row][col] === 0) {
+                            world_str = "<div class='bills mpel'></div>";
+                        }
+                        else if (world[row][col] === 1) {
+                            world_str = "<div class='empty mpel'></div>";
+                        }
+                        else if (world[row][col] === 2) {
+                            world_str = "<div class='trumprt mpel'></div>";
+                        }
+                        else if (world[row][col] === 3) {
+                            world_str = "<div class='trumplft mpel'></div>";
+                        }
+                        else if (world[row][col] === 4) {
+                            world_str = "<div class='trumpup mpel'></div>";
+                        }
+                        else if (world[row][col] === 5) {
+                            world_str = "<div class='trumpdn mpel'></div>";
+                        }
+                        else if (world[row][col] === 6) {
+                            world_str = "<div class='ch11 mpel'></div>";
+                        }
+                        else if (world[row][col] === 7) {
+                            world_str = "<div class='potus mpel'></div>";
+                        }
+                        else if (world[row][col] === 8) {
+                            world_str = "<div class='casino mpel'></div>";
+                        }
+                        else if (world[row][col] === 10) {
+                            world_str = "<div class='trmpaghast mpel'></div>";
+                        }
+                        else if (world[row][col] === 11) {
+                            world_str = "<div class='putin mpel'></div>";
+                        }
+                        else if (world[row][col] === 12) {
+                            world_str = "<div class='davidduke mpel'></div>";
+                        }
+                        else if (world[row][col] === 13) {
+                            world_str = "<div class='vfox mpel'></div>";
+                        }
+                        $('#map').append(world_str);
+                    }
+                    }
+                }
+            }
+
+            drawmap();
 
             $('body').keydown(function(event){
                 if (event.keyCode === 38){
