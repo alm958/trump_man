@@ -245,9 +245,11 @@
 
             function drawmap(){
                 if (putin.row === trumpman.row && putin.col === trumpman.col){
-                    console.log('putin at trump. you lost');
                     window.clearInterval(interval);
                     youlost = true;
+                    $('#trumpscore').html(trump_score);
+                    $('#investorscore').html(investor_score);
+                    $('#map').html("<img src='images/yourfired.jpg' alt='you are fired'>");
                     pauseSong();
                     pause_audio1();
                     pause_audio2();
@@ -255,17 +257,17 @@
                     pause_audio5();
                     pause_audio6();
                     pause_audio7();
-                    $('#trumpscore').html(trump_score);
-                    $('#investorscore').html(investor_score);
-                    $('#map').html("<img src='images/yourfired.jpg' alt='you are fired'>");
                     audio8.play();
-                    break;
+                    return;
                 }
                 else if (eatcount === 235){
-                    console.log('you won')
                     youwon = true;
                     window.clearInterval(interval);
+                    $('#trumpscore').html(trump_score);
+                    $('#investorscore').html(investor_score);
+                    $('#map').html("<img src='images/winner.jpg' alt='you won'>");
                     pauseSong();
+                    audio9.play();
                     pause_audio1();
                     pause_audio2();
                     pause_audio3();
@@ -273,11 +275,6 @@
                     pause_audio6();
                     pause_audio7();
                     pause_audio8();
-                    $('#trumpscore').html(trump_score);
-                    $('#investorscore').html(investor_score);
-                    $('#map').html("<img src='images/winner.jpg' alt='you won'>");
-                    audio9.play();
-                    break;
                 }
                 else {
                 $('#trumpscore').html(trump_score);
@@ -657,7 +654,7 @@
                 drawmap();
             }
 
-            var interval = setInterval(putinmove, 200);
+            var interval = setInterval(putinmove, 250);
 
         });
         </script>
